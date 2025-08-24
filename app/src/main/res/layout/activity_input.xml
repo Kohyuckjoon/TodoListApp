@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.myapplication.InputViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="활일"
+                android:text="@={viewModel.content}"
                 android:inputType="textMultiLine">
                 <requestFocus/>
             </com.google.android.material.textfield.TextInputEditText>
@@ -45,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="메모"
+                android:text="@={viewModel.memo}"
                 android:inputType="text"
                 android:imeOptions="actionDone">
             </com.google.android.material.textfield.TextInputEditText>
@@ -63,6 +67,8 @@
             android:paddingEnd="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:enabled="@{!viewModel.content.empty}"
+            android:onClick="@{() -> viewModel.insertData()}"
             android:text="입력 완료"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
