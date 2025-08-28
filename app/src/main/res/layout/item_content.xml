@@ -6,11 +6,16 @@
         <variable
             name="item"
             type="com.example.myapplication.model.ContentEntity" />
+        
+        <variable
+            name="handler"
+            type="com.example.myapplication.MainActivity.Handler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> handler.onClickItem(item)"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:paddingTop="8dp"
@@ -22,6 +27,7 @@
             android:layout_height="wrap_content"
             android:checked="@{item.done}"
             android:text="@{item.content}"
+            android:onCheckedChanged="@{(button, check) -> handler.onCheckItem(item)}"
             android:textStyle="bold"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

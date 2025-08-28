@@ -7,6 +7,7 @@ import com.example.myapplication.model.ContentEntity
 
 class ContentViewholder (
     private val binding: ItemContentBinding,
+    private val handler: MainActivity.Handler
 ) : RecyclerView.ViewHolder(binding.root){
     fun bind(item : ContentEntity) {
         binding.item = item
