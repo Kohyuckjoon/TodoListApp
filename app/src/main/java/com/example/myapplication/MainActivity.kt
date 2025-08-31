@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -54,8 +55,14 @@ class MainActivity : AppCompatActivity() {
         fun onClickItem(item: ContentEntity) {
             InputActivity.start(this@MainActivity, item)
         }
-        fun onCheckItem(item: ContentEntity) {
-            viewModel.updateItem(item)
+
+        fun onLongClickItem (item: ContentEntity) : Boolean {
+            viewModel.deleteItem(item)
+            Toast.makeText(this@MainActivity, "삭제 완료", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        fun onCheckItem(item: ContentEntity, checked: Boolean) {
+            viewModel.updateItem(item.copy(isDone = checked))
         }
     }
 }
